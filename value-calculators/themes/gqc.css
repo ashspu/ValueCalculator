@@ -1,0 +1,48 @@
+:root {
+  --bg: #fff7ed;
+  --panel: #ffffff;
+  --border: #f0d2b5;
+  --text: #3b2d1f;
+  --muted: #8a6b4a;
+  --accent: #e07a2c;
+  --positive: #00876c;
+  --shadow: 0 16px 32px rgba(224, 122, 44, 0.12);
+}
+
+body {
+  background: radial-gradient(circle at 15% 10%, rgba(224, 122, 44, 0.12), transparent 32%), radial-gradient(circle at 80% 0%, rgba(0, 135, 108, 0.12), transparent 28%), var(--bg);
+  color: var(--text);
+}
+
+.field {
+  background: #fff2e1;
+  border-color: #f0d2b5;
+}
+
+.value-pill {
+  background: rgba(224, 122, 44, 0.15);
+  color: var(--text);
+}
+
+.slider-wrapper input[type="range"] {
+  background: linear-gradient(90deg, rgba(224, 122, 44, 0.25), rgba(224, 122, 44, 0.05));
+  border-color: #f0d2b5;
+}
+
+.manual-wrapper input {
+  background: #fff8ef;
+  border-color: #f0d2b5;
+  color: var(--text);
+}
+
+.panel {
+  border: 1px solid #f3e0cd;
+}
+
+.bar-track {
+  background: #f5e4d1;
+}
+
+.chart-container {
+  background: #fff2e1;
+}

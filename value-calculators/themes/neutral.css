@@ -1,0 +1,14 @@
+:root {
+  --bg: #f7f7f7;
+  --panel: #ffffff;
+  --border: #e2e2e2;
+  --text: #1f1f1f;
+  --muted: #5a5a5a;
+  --accent: #2d6cdf;
+  --positive: #0f7b4d;
+  --shadow: 0 12px 35px rgba(0, 0, 0, 0.04);
+}
+
+input[type="range"]::-moz-focus-outer {
+  border: 0;
+}

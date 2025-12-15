@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meter-to-Cash Value Use Cases</title>
+  <link rel="stylesheet" href="base.css">
+  <link id="theme-style" rel="stylesheet" href="themes/neutral.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">GQC's Modular Value Methodology</p>
+        <h1>Utilities Smart Billing App | Value Calculator</h1>
+        <p class="lede">Stackable value-centric use cases built around reducing frequency and cost to resolve.</p>
+      </div>
+      <div class="header-controls">
+        <button id="tutorial-launch" class="link-button">Show tutorial</button>
+        <div class="currency-switcher" id="currency-switcher">
+          <label for="currency-select">Display currency</label>
+          <select id="currency-select"></select>
+          <p id="currency-note" class="muted microcopy"></p>
+        </div>
+        <div class="theme-indicator" id="theme-indicator"></div>
+      </div>
+    </header>
+
+    <section class="panel results-panel primary-results" id="annual-value-impact">
+      <div class="panel-header compact">
+        <p class="eyebrow">Annual Value Impact</p>
+        <h3 id="impact-heading">ROI view at a glance</h3>
+      </div>
+      <div class="results-grid">
+        <div class="primary-result">
+          <div class="value-head">
+            <p class="muted">Annual value realized</p>
+            <button class="info-btn" aria-describedby="rationalization" aria-label="How this value is calculated">i</button>
+            <div id="rationalization" class="value-tooltip">
+              <p class="tooltip-title">How this value is calculated</p>
+              <p class="tooltip-label">What changed</p>
+              <p class="muted small-text">We reduce how often costly events require human work and how expensive each is to resolve.</p>
+              <p class="tooltip-label">What was measured</p>
+              <ul class="muted small-text">
+                <li>Baseline annual cost for this use case</li>
+                <li>Improved annual cost after applying ROI Expected</li>
+                <li>Annual cost avoided</li>
+              </ul>
+              <p class="tooltip-label">What this value represents</p>
+              <p class="muted small-text">Hard-dollar operational savings from fewer touches, less agent time, and reduced leakage. It excludes customer satisfaction, regulatory exposure, and cash-flow timing benefits.</p>
+            </div>
+          </div>
+          <p class="result positive primary" id="value-realized">$0</p>
+        </div>
+        <div>
+          <p class="muted">Annual cost today</p>
+          <p class="result" id="baseline-cost">$0</p>
+        </div>
+        <div>
+          <p class="muted">Annual cost after improvement</p>
+          <p class="result" id="improved-cost">$0</p>
+        </div>
+      </div>
+      <div class="collapsible-wrapper">
+        <button type="button" class="collapsible-header button-like" data-collapse-target="value-details">
+          <span class="collapse-icon" aria-hidden="true">+</span>
+          <span>Details</span>
+        </button>
+        <div id="value-details" class="collapsible-body collapsed">
+          <div id="value-guidance" class="muted hidden">Select a use case to see how we calculate value and view the breakdown.</div>
+          <div id="value-details-content">
+            <div id="chart-container" class="chart-container"></div>
+            <div class="itemized">
+            <div class="itemized-header">
+              <h4>Use case breakdown</h4>
+            </div>
+            <div class="item-row item-row-header">
+              <div class="name">Use case</div>
+              <div class="value muted">Annual cost today</div>
+              <div class="value muted">After improvement</div>
+              <div class="value muted">Value realized</div>
+              <div class="value muted"></div>
+            </div>
+            <div id="itemized-list" class="itemized-list"></div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <section class="panel" id="value-cart-panel">
+      <div class="usecase-header-row">
+        <div class="header-text">
+          <p class="eyebrow">Use cases</p>
+          <h2>Value cart</h2>
+          <p class="muted">Add Meter-to-Cash use cases to estimate combined value.</p>
+        </div>
+        <button id="add-use-case-btn" class="ghost-button">+ Add use case</button>
+      </div>
+      <div id="usecase-container" class="usecase-container"></div>
+    </section>
+
+    <div id="add-modal" class="modal hidden" role="dialog" aria-labelledby="add-modal-title">
+      <div class="modal-backdrop"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="add-modal-title">Add a use case</h3>
+          <button id="add-modal-close" aria-label="Close add modal">&times;</button>
+        </div>
+        <div id="usecase-catalog" class="catalog-grid"></div>
+      </div>
+    </div>
+
+    <div id="tutorial-overlay" class="tutorial-overlay hidden" aria-modal="true" role="dialog" aria-labelledby="tutorial-title">
+      <div class="tutorial-backdrop"></div>
+      <div class="tutorial-highlight" id="wizard-spotlight"></div>
+      <div class="tutorial-card" id="tutorial-card">
+        <div class="tutorial-header">
+          <p id="tutorial-step-label" class="muted small"></p>
+          <button id="tutorial-close" aria-label="Close tutorial">&times;</button>
+        </div>
+        <h3 id="tutorial-title"></h3>
+        <div id="tutorial-body" class="tutorial-body"></div>
+        <div class="tutorial-actions">
+          <button id="tutorial-skip" class="ghost-button">Skip</button>
+          <div>
+            <button id="tutorial-back" class="ghost-button">Back</button>
+            <button id="tutorial-next" class="ghost-button primary">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="guidance-connector" class="guidance-connector hidden" aria-hidden="true"></div>
+  <div id="add-use-case-arrow" class="guidance-arrow hidden" aria-hidden="true">
+    <div class="arrow-body"></div>
+    <div class="arrow-head"></div>
+    <span class="arrow-label">Start here</span>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
