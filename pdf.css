@@ -1,0 +1,196 @@
+@page {
+  size: A4;
+  margin: 18mm;
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background: #ffffff;
+  color: #111;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.print-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  align-items: center;
+  border-bottom: 1px solid #e6e6e6;
+  padding: 10mm 0 6mm;
+}
+
+.print-logos {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.print-logo {
+  width: 90px;
+  height: 34px;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 1px solid #e6e6e6;
+  padding: 4px 6px;
+  background: #fff;
+}
+
+.smart-logo-text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 12px;
+  color: #0a7c5b;
+  letter-spacing: 0.5px;
+}
+
+.print-meta h1 {
+  margin: 2px 0 4px;
+  font-size: 22px;
+  letter-spacing: -0.2px;
+}
+
+.print-meta .muted {
+  font-size: 12px;
+  color: #555;
+}
+
+.print-body {
+  margin-top: 60mm;
+  display: grid;
+  gap: 10mm;
+}
+
+.print-panel {
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+  padding: 10mm;
+  background: #fafbfc;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.print-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6mm;
+}
+
+.print-card {
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+  padding: 6mm;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px #f3f4f6;
+}
+
+.print-metric {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 6px 0 0;
+}
+
+.print-usecase-list {
+  display: grid;
+  gap: 4mm;
+}
+
+.print-usecase-card {
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+  padding: 6mm;
+  background: #fff;
+}
+
+.print-usecase-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.print-usecase-header h4 {
+  margin: 0;
+  font-size: 14px;
+  letter-spacing: -0.1px;
+}
+
+.print-usecase-header .muted {
+  font-size: 11px;
+  color: #666;
+}
+
+.print-metrics-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4mm;
+  margin-top: 4mm;
+}
+
+.print-metric-block {
+  background: #f7f9fc;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  padding: 4mm;
+}
+
+.print-metric-block p {
+  margin: 0;
+}
+
+.print-metric-block .label {
+  font-size: 11px;
+  color: #666;
+}
+
+.print-metric-block .value {
+  font-weight: 700;
+  margin-top: 2mm;
+}
+
+.print-empty {
+  border: 1px dashed #d6d6d6;
+  padding: 6mm;
+  border-radius: 10px;
+  background: #fff;
+  text-align: center;
+}
+
+@media screen {
+  #print-report {
+    display: none;
+  }
+}
+
+.printing-report #print-report {
+  display: block !important;
+}
+.printing-report .app-shell,
+.printing-report .modal,
+.printing-report .tutorial-overlay,
+.printing-report .guidance-connector,
+.printing-report .guidance-arrow {
+  display: none !important;
+}
+
+@media print {
+  .app-shell,
+  .modal,
+  .tutorial-overlay,
+  .guidance-connector,
+  .guidance-arrow {
+    display: none !important;
+  }
+  #print-report {
+    display: block !important;
+  }
+}

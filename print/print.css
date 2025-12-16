@@ -1,0 +1,269 @@
+/* ================================
+   HARD RESET FOR PRINT SUMMARY
+   ================================ */
+
+@page {
+  size: A4;
+  margin: 24mm 20mm;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  font-family: "Inter", Arial, sans-serif;
+  color: #0f172a;
+}
+
+/* Center the printable content */
+.report {
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Each logical page */
+.page {
+  page-break-after: always;
+}
+
+.page:last-of-type {
+  page-break-after: auto;
+}
+
+/* Single source of width truth */
+.page-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* ================================
+   HEADER
+   ================================ */
+
+.report-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10mm;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  width: 96px;
+}
+
+.meta {
+  font-size: 11px;
+  color: #475569;
+}
+
+.title-block {
+  text-align: center;
+}
+
+.title-block .eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 11px;
+  color: #475569;
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+
+.title-block h1 {
+  font-family: "IBM Plex Serif", serif;
+  font-size: 26px;
+  margin: 0 0 6px;
+}
+
+.title-block .subtitle {
+  font-size: 12px;
+  color: #475569;
+  margin: 0;
+}
+
+/* ================================
+   SECTIONS
+   ================================ */
+
+.section {
+  margin-top: 12mm;
+}
+
+.section-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #334155;
+  margin: 0 0 6mm;
+}
+
+.section-intro {
+  max-width: 640px;
+  margin: 6mm 0 0;
+  font-size: 12px;
+  line-height: 1.65;
+  color: #4b5563;
+}
+
+/* ================================
+   METRICS (THIS IS THE FIX)
+   ================================ */
+
+.metrics-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.2fr;
+  gap: 6mm;
+  width: 100%;
+}
+
+/* Metric cards */
+.metric-card {
+  border: 1px solid #e6e8eb;
+  border-radius: 8px;
+  background: #fff;
+  padding: 18px 20px;
+}
+
+.metric-card .label {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6b7280;
+  margin: 0 0 8px;
+}
+
+.metric-card .value {
+  font-family: "IBM Plex Serif", serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+/* Primary metric (Value Realized) */
+.metric-card.metric-primary {
+  border: 2px solid #111827;
+  padding: 20px 22px;
+}
+
+.metric-card.metric-primary::before {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 2px;
+  background: #111827;
+  margin-bottom: 10px;
+}
+
+.metric-card.metric-primary .value {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ================================
+   USE CASE PAGES
+   ================================ */
+
+.usecase-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4mm;
+}
+
+.usecase-header h3 {
+  font-family: "IBM Plex Serif", serif;
+  font-size: 18px;
+  margin: 0;
+}
+
+.usecase-header .scenario {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1f3a5f;
+  margin: 0;
+}
+
+.narrative {
+  font-size: 12px;
+  color: #475569;
+  line-height: 1.6;
+  margin: 0 0 6mm;
+}
+
+.assumptions {
+  font-size: 11px;
+  color: #475569;
+  margin-top: 8mm;
+}
+/* ================================
+   PAGE-LEVEL CONSTRAINTS
+   ================================ */
+
+/* Every logical page is a real page */
+.page {
+  page-break-before: always;
+  page-break-after: always;
+  min-height: 100vh;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* First page should not force a blank page */
+.page:first-of-type {
+  page-break-before: auto;
+}
+
+/* Inner content constraint – THIS fixes width drift */
+.page-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Summary page stays centered and tight */
+.page-summary {
+  display: block;
+}
+
+/* Each use case gets its own page */
+.page-usecase {
+  display: block;
+  page-break-before: always;
+}
+
+/* Prevent metric blocks from splitting across pages */
+.metric-card,
+.usecase-header,
+.narrative,
+.metrics-row {
+  page-break-inside: avoid;
+}
+
+/* Safety: avoid orphan headers */
+.usecase-header {
+  page-break-after: avoid;
+}
+
+/* ================================
+   PRINT-SPECIFIC HARDENING
+   ================================ */
+
+@media print {
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background: #fff;
+  }
+}

@@ -6,16 +6,70 @@
   <title>Meter-to-Cash Value Use Cases</title>
   <link rel="stylesheet" href="base.css">
   <link id="theme-style" rel="stylesheet" href="themes/neutral.css">
+  <link rel="stylesheet" href="pdf.css" media="print">
+  <script type="module" src="./app.js"></script>
 </head>
 <body>
+  <div id="print-report" aria-hidden="true">
+    <header class="print-header">
+      <div class="print-logos">
+        <img src="GQC LOGO.png" alt="GQC logo" class="print-logo">
+        <div class="print-logo smart-logo-text">Smart Utilities</div>
+      </div>
+      <div class="print-meta">
+        <p class="eyebrow">Meter-to-Cash Value Calculator</p>
+        <h1>Value Summary Report</h1>
+        <p class="muted">Print-ready snapshot of annual value impact and key use case metrics.</p>
+      </div>
+    </header>
+
+    <main class="print-body">
+      <section class="print-panel">
+        <div class="panel-header compact">
+          <p class="eyebrow">Annual Value Impact</p>
+          <h3>Executive summary</h3>
+        </div>
+        <div class="print-grid">
+          <div class="print-card">
+            <p class="muted">Annual value realized</p>
+            <p class="print-metric" id="print-value-realized">$0</p>
+          </div>
+          <div class="print-card">
+            <p class="muted">Annual cost today</p>
+            <p class="print-metric" id="print-baseline-cost">$0</p>
+          </div>
+          <div class="print-card">
+            <p class="muted">After improvement</p>
+            <p class="print-metric" id="print-improved-cost">$0</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="print-panel">
+        <div class="panel-header compact">
+          <p class="eyebrow">Use cases</p>
+          <h3>Key metrics by use case</h3>
+        </div>
+        <div id="print-usecase-list" class="print-usecase-list">
+          <div class="print-empty muted">Add use cases in the live UI to populate this report.</div>
+        </div>
+      </section>
+    </main>
+  </div>
   <div class="app-shell">
     <header class="app-header">
-      <div>
+      <div class="brand-block">
+        <div class="brand-row">
+          <img src="GQC LOGO.png" class="brand-logo" alt="GQC logo">
+          <div class="brand-divider"></div>
+          <span class="brand-tagline">Smart Utilities</span>
+        </div>
         <p class="eyebrow">GQC's Modular Value Methodology</p>
         <h1>Utilities Smart Billing App | Value Calculator</h1>
         <p class="lede">Stackable value-centric use cases built around reducing frequency and cost to resolve.</p>
       </div>
       <div class="header-controls">
+        <button id="export-open" class="ghost-button primary">Export / Email PDF</button>
         <button id="tutorial-launch" class="link-button">Show tutorial</button>
         <div class="currency-switcher" id="currency-switcher">
           <label for="currency-select">Display currency</label>
@@ -111,6 +165,47 @@
       </div>
     </div>
 
+    <div id="export-modal" class="modal hidden" role="dialog" aria-labelledby="export-modal-title">
+      <div class="modal-backdrop"></div>
+      <div class="modal-content export-modal">
+        <div class="modal-header">
+          <div>
+            <p class="eyebrow">Share results</p>
+            <h3 id="export-modal-title">Export or email a PDF summary</h3>
+          </div>
+          <button id="export-modal-close" aria-label="Close export modal">&times;</button>
+        </div>
+        <div class="export-body">
+          <div class="export-column">
+            <div class="export-heading">
+              <h4>Select use cases</h4>
+              <p class="muted small-text">Only the checked use cases will be included.</p>
+            </div>
+            <div id="export-usecase-list" class="export-usecase-list"></div>
+          </div>
+          <div class="export-column">
+            <div class="export-heading">
+              <h4>Delivery</h4>
+              <p class="muted small-text">Download locally or email via your configured service.</p>
+            </div>
+            <label class="stacked-label" for="export-email">
+              Recipient email
+              <input id="export-email" type="email" placeholder="team@example.com" autocomplete="email" />
+            </label>
+            <label class="stacked-label" for="export-notes">
+              Add a short note (optional)
+              <textarea id="export-notes" rows="3" placeholder="Context for the recipient..."></textarea>
+            </label>
+            <div class="export-actions">
+              <button id="export-download" class="ghost-button">Download PDF</button>
+              <button id="export-send" class="ghost-button primary">Email PDF</button>
+            </div>
+            <p id="export-status" class="muted small-text export-status"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div id="tutorial-overlay" class="tutorial-overlay hidden" aria-modal="true" role="dialog" aria-labelledby="tutorial-title">
       <div class="tutorial-backdrop"></div>
       <div class="tutorial-highlight" id="wizard-spotlight"></div>
@@ -139,6 +234,6 @@
     <span class="arrow-label">Start here</span>
   </div>
 
-  <script type="module" src="app.js"></script>
+
 </body>
 </html>

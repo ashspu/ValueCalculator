@@ -14,6 +14,14 @@ Vanilla JS host for value calculators built around two levers: reducing frequenc
 ## Run locally
 Open `index.html` in a browser (no build step). Pick a calculator, adjust inputs, and toggle scenarios to see baseline cost, improved cost, and annual value.
 
+## Export / email a PDF
+- Use the **Export / Email PDF** button to select which active use cases to include, then download the generated PDF.
+- To email the PDF, point `config/email.js` `endpoint` at a Mailchimp/Mandrill/other service you own. The app POSTs `{ email, subject, message, pdfBase64, filename, meta }`.
+- If no endpoint is configured the download flow still works, and the email button is disabled.
+
+## Print-optimized report
+- A dedicated print-only report is available (File → Print) with A4 sizing, logos, and key metrics. The live UI is hidden while printing.
+
 ## Embed contract
 ```html
 <iframe

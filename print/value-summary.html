@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Value Summary Report</title>
+  <link rel="stylesheet" href="print.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Serif:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="report">
+    <div class="page page-summary">
+      <div class="page-inner">
+        <header class="report-header">
+          <div class="header-top">
+            <img src="../assets/logos/GQC LOGO.png" alt="GQC logo" class="logo">
+            <div class="meta" id="generated-at"></div>
+          </div>
+          <div class="title-block">
+            <p class="eyebrow">Meter-to-Cash Value Calculator</p>
+            <h1>Value Summary Report</h1>
+            <p class="subtitle">Executive-ready snapshot of value impact and key use case metrics.</p>
+          </div>
+        </header>
+
+        <section class="section">
+          <p class="section-eyebrow">Annual Value Impact</p>
+              <div class="metrics-row">
+                <div class="metric-card">
+                  <p class="label">Annual cost today</p>
+                  <p class="value" id="metric-baseline"></p>
+                </div>
+
+                <div class="metric-card">
+                  <p class="label">After improvement</p>
+                  <p class="value" id="metric-improved"></p>
+                </div>
+
+                <div class="metric-card metric-primary">
+                  <p class="label">Annual value realized</p>
+                  <p class="value" id="metric-value"></p>
+                </div>
+              </div>
+              <p class="section-intro">
+                The value shown below represents annualized, hard-dollar impact achievable through targeted
+                improvements in the Meter-to-Cash process. These gains are driven by reducing the frequency
+                and cost of manual interventions across high-volume operational use cases.
+              </p>
+
+              <p class="section-intro">
+                In practice, utilities typically begin realizing measurable impact within
+                <strong>3–6 months</strong> of deployment, as insights are operationalized and embedded
+                into day-to-day execution.
+              </p>            
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div id="usecase-pages"></div>
+  </div>
+
+  <script>
+    const formatCurrency = (value) =>
+      new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(value || 0);
+
+    function renderReport(payload) {
+      if (!payload) return;
+      const generated = document.getElementById("generated-at");
+      if (generated) generated.textContent = `Generated ${new Date(payload.generatedAt || Date.now()).toLocaleString()}`;
+
+      const valueEl = document.getElementById("metric-value");
+      const baseEl = document.getElementById("metric-baseline");
+      const improvedEl = document.getElementById("metric-improved");
+      if (valueEl) valueEl.textContent = formatCurrency(payload.totals?.value || 0);
+      if (baseEl) baseEl.textContent = formatCurrency(payload.totals?.baseline || 0);
+      if (improvedEl) improvedEl.textContent = formatCurrency(payload.totals?.improved || 0);
+
+      const pages = document.getElementById("usecase-pages");
+      if (pages) {
+        pages.innerHTML = "";
+        const cases = Array.isArray(payload.useCases) ? payload.useCases : [];
+        if (!cases.length) {
+          const page = document.createElement("div");
+          page.className = "page page-usecase";
+          const empty = document.createElement("div");
+          empty.className = "empty";
+          empty.textContent = "No use cases selected.";
+          page.appendChild(empty);
+          pages.appendChild(page);
+        } else {
+          cases.forEach((uc) => {
+            pages.appendChild(buildUseCasePage(uc));
+          });
+        }
+      }
+      window.print();
+    }
+
+    function buildMetric(label, value) {
+      const block = document.createElement("div");
+      block.className = "metric-card";
+      const l = document.createElement("p");
+      l.className = "label";
+      l.textContent = label;
+      const v = document.createElement("p");
+      v.className = "value";
+      v.textContent = formatCurrency(value || 0);
+      block.append(l, v);
+      return block;
+    }
+
+    function buildUseCasePage(uc) {
+      const page = document.createElement("div");
+      page.className = "page page-usecase";
+
+      const header = document.createElement("div");
+      header.className = "usecase-header";
+      const name = document.createElement("h3");
+      name.textContent = uc.name || "";
+      const scenario = document.createElement("p");
+      scenario.className = "scenario";
+      scenario.textContent = uc.scenarioLabel || "";
+      header.append(name, scenario);
+      page.appendChild(header);
+
+      const narrative = document.createElement("p");
+      narrative.className = "narrative";
+      narrative.textContent =
+        uc.description ||
+        "This use case estimates value through reduced frequency and lower cost per event under the selected scenario.";
+      page.appendChild(narrative);
+
+      const metrics = document.createElement("div");
+      metrics.className = "metrics-row";
+      metrics.append(
+        buildMetric("Annual cost today", uc.baseline),
+        buildMetric("After improvement", uc.improved),
+        buildMetric("Value realized", uc.value)
+      );
+      page.appendChild(metrics);
+
+      const footer = document.createElement("p");
+      footer.className = "assumptions";
+      footer.textContent = "Assumptions: Scenario applies expected reductions to frequency and cost per event. Values are directional and exclude qualitative benefits.";
+      page.appendChild(footer);
+
+      return page;
+    }
+
+    window.addEventListener("message", (event) => {
+      if (!event.data || event.data.type !== "value-summary-data") return;
+      renderReport(event.data.payload);
+    });
+  </script>
+</body>
+</html>
