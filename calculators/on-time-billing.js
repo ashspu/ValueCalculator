@@ -3,9 +3,9 @@ import { buildValueModel, hoursToCost } from "./m2c-core.js";
 import { registerCalculator } from "../registry.js";
 
 const ON_TIME_SCENARIOS = {
-  conservative: { label: "Conservative", frequencyReduction: 0.1, costReduction: 0.15 },
-  realistic: { label: "Realistic", frequencyReduction: 0.25, costReduction: 0.3 },
-  optimistic: { label: "Optimistic", frequencyReduction: 0.4, costReduction: 0.45 }
+  conservative: { label: "Conservative Outcome", frequencyReduction: 0.1, costReduction: 0.15 },
+  realistic: { label: "Realistic Outcome", frequencyReduction: 0.25, costReduction: 0.3 },
+  optimistic: { label: "Optimistic Outcome", frequencyReduction: 0.4, costReduction: 0.45 }
 };
 
 registerCalculator({

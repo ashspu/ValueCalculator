@@ -7,17 +7,17 @@ import { registerCalculator } from "../registry.js";
  */
 const SCENARIOS = {
   conservative: {
-    label: "Conservative",
+    label: "Conservative Outcome",
     frequencyReduction: 0.25,
     costReduction: 0.1
   },
   realistic: {
-    label: "Realistic",
+    label: "Realistic Outcome",
     frequencyReduction: 0.5,
     costReduction: 0.2
   },
   optimistic: {
-    label: "Optimistic",
+    label: "Optimistic Outcome",
     frequencyReduction: 0.75,
     costReduction: 0.3
   }

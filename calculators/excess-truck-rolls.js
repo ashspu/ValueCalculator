@@ -3,9 +3,9 @@ import { buildValueModel, hoursToCost } from "./m2c-core.js";
 import { registerCalculator } from "../registry.js";
 
 const TRUCK_ROLL_SCENARIOS = {
-  conservative: { label: "Conservative", frequencyReduction: 0.1, costReduction: 0 },
-  realistic: { label: "Realistic", frequencyReduction: 0.25, costReduction: 0 },
-  optimistic: { label: "Optimistic", frequencyReduction: 0.4, costReduction: 0 }
+  conservative: { label: "Conservative Outcome", frequencyReduction: 0.1, costReduction: 0 },
+  realistic: { label: "Realistic Outcome", frequencyReduction: 0.25, costReduction: 0 },
+  optimistic: { label: "Optimistic Outcome", frequencyReduction: 0.4, costReduction: 0 }
 };
 
 registerCalculator({

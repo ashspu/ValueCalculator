@@ -56,6 +56,6 @@ registerCalculator({
 - Improved cost = reduced frequency × reduced cost to resolve
 - Annual value = baseline − improved
 - Scenarios apply consistent multipliers:
-  - Conservative: -10% frequency, -15% cost
-  - Realistic: -25% frequency, -30% cost
-  - Optimistic: -40% frequency, -45% cost
+- Conservative Outcome: -10% frequency, -15% cost
+- Realistic Outcome: -25% frequency, -30% cost
+- Optimistic Outcome: -40% frequency, -45% cost

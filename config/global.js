@@ -1,16 +1,16 @@
 export const scenarios = {
   conservative: {
-    label: "Conservative",
+    label: "Conservative Outcome",
     frequencyReduction: 0.1,
     costReduction: 0.15
   },
   realistic: {
-    label: "Realistic",
+    label: "Realistic Outcome",
     frequencyReduction: 0.25,
     costReduction: 0.3
   },
   optimistic: {
-    label: "Optimistic",
+    label: "Optimistic Outcome",
     frequencyReduction: 0.4,
     costReduction: 0.45
   }

@@ -26,9 +26,9 @@ const SCENARIOS =
   scenarios && Object.keys(scenarios).length
     ? scenarios
     : {
-        conservative: { label: "Conservative", frequencyReduction: 0.1, costReduction: 0.15 },
-        realistic: { label: "Realistic", frequencyReduction: 0.25, costReduction: 0.3 },
-        optimistic: { label: "Optimistic", frequencyReduction: 0.4, costReduction: 0.45 }
+    conservative: { label: "Conservative Outcome", frequencyReduction: 0.1, costReduction: 0.15 },
+    realistic: { label: "Realistic Outcome", frequencyReduction: 0.25, costReduction: 0.3 },
+    optimistic: { label: "Optimistic Outcome", frequencyReduction: 0.4, costReduction: 0.45 }
       };
 const DEFAULT_SCENARIOS = SCENARIOS;
 
@@ -163,9 +163,9 @@ function renderScenarioToggle() {
       data.costReduction * 100
     )}% cost</span>`;
     let labelText = data.label;
-    if (key === "conservative") labelText = "Conservative – Minor process improvements";
-    if (key === "realistic") labelText = "Realistic – Typical improvement with focused execution";
-    if (key === "optimistic") labelText = "Optimistic – Strong execution with automation and discipline";
+    if (key === "conservative") labelText = "Conservative Outcome – Minor process improvements";
+    if (key === "realistic") labelText = "Realistic Outcome – Typical improvement with focused execution";
+    if (key === "optimistic") labelText = "Optimistic Outcome – Strong execution with automation and discipline";
     button.innerHTML = `${labelText} ${pct}`;
     button.className = `scenario-chip scenario-${key} ${state.scenario === key ? "active" : ""}`;
     button.addEventListener("click", () => {
