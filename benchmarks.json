@@ -1,69 +1,142 @@
-{
-  "version": "1.0",
-  "scope": "meter_to_cash",
-  "assumptions": {
-    "one_bill_per_schedule": true,
-    "estimation_is_structural": true,
-    "benchmarks_are_directional": true
+[
+  {
+    "benchmark_name": "estimation_rate",
+    "low": 0.02,
+    "medium": 0.05,
+    "high": 0.10,
+    "description": "Percentage of bills issued using estimated meter reads"
   },
-  "benchmarks": {
-    "estimation_rate": {
-      "low": 0.02,
-      "medium": 0.05,
-      "high": 0.10,
-      "unit": "percent_of_bills",
-      "description": "Percentage of bills issued on estimated reads"
-    },
-    "consecutive_estimation_rate": {
-      "low": 0.005,
-      "medium": 0.02,
-      "high": 0.05,
-      "unit": "percent_of_accounts",
-      "description": "Accounts estimated for 2+ consecutive billing cycles"
-    },
-    "revenue_at_risk_from_estimation": {
-      "low": 0.005,
-      "medium": 0.0125,
-      "high": 0.025,
-      "unit": "percent_of_annual_billed_revenue",
-      "description": "Revenue at risk due to estimation-related underbilling, overbilling, delays, disputes, and write-offs"
-    },
-    "risk_factor_on_estimated_bills": {
-      "low": 0.10,
-      "medium": 0.20,
-      "high": 0.30,
-      "unit": "percent_of_estimated_bill_value",
-      "description": "Portion of estimated bill value that is delayed, disputed, or never fully recovered"
-    },
-    "billing_delay_days_due_to_missed_reads": {
-      "low": 2,
-      "medium": 5,
-      "high": 10,
-      "unit": "days",
-      "description": "Average billing delay when reads are missed or late"
-    },
-    "rebill_rate_from_estimation": {
-      "low": 0.05,
-      "medium": 0.10,
-      "high": 0.20,
-      "unit": "percent_of_estimated_bills",
-      "description": "Estimated bills that result in a rebill or adjustment"
-    },
-    "manual_cost_per_exception": {
-      "low": 8,
-      "medium": 15,
-      "high": 30,
-      "unit": "currency_per_exception",
-      "description": "Operational cost to resolve estimation-driven billing exceptions"
-    }
+  {
+    "benchmark_name": "consecutive_estimation_rate",
+    "low": 0.005,
+    "medium": 0.02,
+    "high": 0.05,
+    "description": "Percentage of accounts estimated for two or more consecutive billing cycles"
   },
-  "recommended_defaults": {
-    "estimation_rate": "medium",
-    "consecutive_estimation_rate": "medium",
-    "revenue_at_risk_from_estimation": "medium",
-    "risk_factor_on_estimated_bills": "medium",
-    "billing_delay_days_due_to_missed_reads": "medium",
-    "rebill_rate_from_estimation": "medium",
-    "manual_cost_per_exception": "medium"
+  {
+    "benchmark_name": "missed_reads_rate",
+    "low": 0.03,
+    "medium": 0.07,
+    "high": 0.15,
+    "description": "Percentage of scheduled reads not available by the scheduled bill date"
+  },
+  {
+    "benchmark_name": "meter_read_timeliness",
+    "low": 0.95,
+    "medium": 0.90,
+    "high": 0.80,
+    "description": "Percentage of meter reads available within the allowed timeliness threshold"
+  },
+  {
+    "benchmark_name": "meter_read_fulfilment",
+    "low": 0.99,
+    "medium": 0.97,
+    "high": 0.93,
+    "description": "Percentage of scheduled bills with any meter read available eventually"
+  },
+  {
+    "benchmark_name": "billing_on_time_rate",
+    "low": 0.97,
+    "medium": 0.93,
+    "high": 0.85,
+    "description": "Percentage of bills generated on or before the scheduled bill date"
+  },
+  {
+    "benchmark_name": "billing_delay_days",
+    "low": 1,
+    "medium": 4,
+    "high": 10,
+    "description": "Average number of days billing is delayed past the scheduled bill date"
+  },
+  {
+    "benchmark_name": "unbilled_accounts_rate",
+    "low": 0.002,
+    "medium": 0.01,
+    "high": 0.03,
+    "description": "Percentage of active accounts unbilled beyond the billing cycle"
+  },
+  {
+    "benchmark_name": "revenue_at_risk_from_estimation",
+    "low": 0.005,
+    "medium": 0.0125,
+    "high": 0.025,
+    "description": "Portion of annual billed revenue at risk due to estimation related impacts"
+  },
+  {
+    "benchmark_name": "revenue_at_risk_from_billing_delay",
+    "low": 0.003,
+    "medium": 0.008,
+    "high": 0.02,
+    "description": "Portion of annual billed revenue delayed due to late billing"
+  },
+  {
+    "benchmark_name": "rebill_rate",
+    "low": 0.01,
+    "medium": 0.03,
+    "high": 0.07,
+    "description": "Percentage of bills requiring rebilling or adjustment"
+  },
+  {
+    "benchmark_name": "manual_intervention_rate",
+    "low": 0.05,
+    "medium": 0.12,
+    "high": 0.25,
+    "description": "Percentage of bills requiring manual intervention"
+  },
+  {
+    "benchmark_name": "manual_cost_per_exception",
+    "low": 8,
+    "medium": 15,
+    "high": 30,
+    "description": "Operational cost per meter to cash exception"
+  },
+  {
+    "benchmark_name": "exception_resolution_days",
+    "low": 2,
+    "medium": 5,
+    "high": 12,
+    "description": "Average number of days required to resolve meter to cash exceptions"
+  },
+  {
+    "benchmark_name": "collections_on_time_rate",
+    "low": 0.92,
+    "medium": 0.85,
+    "high": 0.75,
+    "description": "Percentage of billed revenue collected within the target payment window"
+  },
+  {
+    "benchmark_name": "dso_days",
+    "low": 30,
+    "medium": 45,
+    "high": 65,
+    "description": "Days sales outstanding for billed revenue"
+  },
+  {
+    "benchmark_name": "write_off_rate",
+    "low": 0.001,
+    "medium": 0.004,
+    "high": 0.01,
+    "description": "Percentage of billed revenue written off as uncollectable"
+  },
+  {
+    "benchmark_name": "payment_dispute_rate",
+    "low": 0.01,
+    "medium": 0.03,
+    "high": 0.06,
+    "description": "Percentage of bills disputed by customers"
+  },
+  {
+    "benchmark_name": "cost_to_serve_per_account",
+    "low": 40,
+    "medium": 65,
+    "high": 95,
+    "description": "Annual operational cost to serve a single customer account"
+  },
+  {
+    "benchmark_name": "end_to_end_m2c_failure_rate",
+    "low": 0.02,
+    "medium": 0.06,
+    "high": 0.15,
+    "description": "Percentage of billing cycles with one or more meter to cash failures"
   }
-}
+]
