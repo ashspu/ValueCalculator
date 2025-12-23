@@ -1,9 +1,9 @@
 [
   {
     "benchmark_name": "estimation_rate",
-    "low": 0.02,
-    "medium": 0.05,
-    "high": 0.10,
+    "low": 0.01,
+    "medium": 0.015,
+    "high": 0.03,
     "description": "Percentage of bills issued using estimated meter reads"
   },
   {
