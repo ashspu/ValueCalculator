@@ -1,0 +1,21 @@
+benchmark_name,low,medium,high,description
+estimation_rate,0.02,0.05,0.10,Percentage of bills issued using estimated meter reads
+consecutive_estimation_rate,0.005,0.02,0.05,Percentage of accounts estimated for two or more consecutive billing cycles
+missed_reads_rate,0.03,0.07,0.15,Percentage of scheduled reads not available by the scheduled bill date
+meter_read_timeliness,0.95,0.90,0.80,Percentage of meter reads available within allowed timeliness threshold
+meter_read_fulfilment,0.99,0.97,0.93,Percentage of scheduled bills with any meter read available eventually
+billing_on_time_rate,0.97,0.93,0.85,Percentage of bills generated on or before scheduled bill date
+billing_delay_days,1,4,10,Average number of days billing is delayed past scheduled bill date
+unbilled_accounts_rate,0.002,0.01,0.03,Percentage of active accounts unbilled beyond billing cycle
+revenue_at_risk_from_estimation,0.005,0.0125,0.025,Portion of annual billed revenue at risk due to estimation-related impacts
+revenue_at_risk_from_billing_delay,0.003,0.008,0.02,Portion of annual billed revenue delayed due to late billing
+rebill_rate,0.01,0.03,0.07,Percentage of bills requiring rebilling or adjustment
+manual_intervention_rate,0.05,0.12,0.25,Percentage of bills requiring manual intervention
+manual_cost_per_exception,8,15,30,Operational cost per billing or meter-to-cash exception
+exception_resolution_days,2,5,12,Average days to resolve meter-to-cash exceptions
+collections_on_time_rate,0.92,0.85,0.75,Percentage of billed revenue collected within target payment window
+dso_days,30,45,65,Days sales outstanding for billed revenue
+write_off_rate,0.001,0.004,0.01,Percentage of billed revenue written off as uncollectable
+payment_dispute_rate,0.01,0.03,0.06,Percentage of bills disputed by customers
+cost_to_serve_per_account,40,65,95,Annual operational cost to serve a single customer account
+end_to_end_m2c_failure_rate,0.02,0.06,0.15,Percentage of billing cycles with one or more meter-to-cash failures
